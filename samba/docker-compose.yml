@@ -1,0 +1,12 @@
+version: '3'
+services:
+  samba:
+    image: dperson/samba:latest
+    ports:
+      - 139:139
+      - 445:445
+    volumes:
+     - ./public/:/mount/
+    environment:
+      USER : "leolm;1234"
+      SHARE : "publicdata;/mount/;no;no;yes;leolm"
