@@ -1,0 +1,17 @@
+version: '3.6'
+services:
+  gitlab:
+    image: gitlab/gitlab-runner:alpine3.19-v16.10.0
+    container_name: gitlab-runner
+    restart: unless-stopped
+    hostname: 'gitlab-runner'
+    volumes:
+      - './container_data/etc/gitlab-runner/:/etc/gitlab-runner'
+      - './container_data/var/run/docker.sock:/var/run/docker.sock'
+    shm_size: '1gb'
+    networks:
+      - gitlabNetwork
+networks:
+  gitlabNetwork:
+    name: gitlabNetwork
+    external: true
